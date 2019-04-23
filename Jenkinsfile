@@ -77,10 +77,8 @@ def image_build_and_push(docker_image_name, docker_image_tag, is_master, git_rep
     try {
         docker.withRegistry("https://${env.DOCKER_REGISTRY}", "$DOCKER_REGISTRY_CREDS") {
             image.push(docker_image_tag)
-            if (is_master) {
-              image.push('latest')
-              sh "docker rmi ${env.DOCKER_REGISTRY}/${docker_image_name}:latest"
-            }
+            image.push('latest')
+            sh "docker rmi ${env.DOCKER_REGISTRY}/${docker_image_name}:latest"
         }
     }
     finally {
