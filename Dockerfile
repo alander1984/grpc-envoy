@@ -1,3 +1,4 @@
 FROM envoyproxy/envoy:latest
-COPY ./envoy.yaml /etc/envoy/envoy.yaml
-CMD /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
+COPY envoy.yaml /etc/envoy.yaml
+EXPOSE 8031 9901
+CMD /usr/local/bin/envoy -c /etc/envoy.yaml
